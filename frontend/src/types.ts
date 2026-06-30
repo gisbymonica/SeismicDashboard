@@ -1,0 +1,11 @@
+export interface Earthquake {id:string;magnitude:number;depth_km:number;time:string;location:string;place:string;longitude:number;latitude:number;region:string}
+export interface Cluster {id:number;status:string;event_count:number;max_magnitude:number;average_depth_km:number;latest_event_time:string;region:string;recent_count:number;baseline_count:number;geometry:GeoJSON.Geometry;event_ids:string[]}
+export interface PopulationExposure {earthquake_id:string;place:string;magnitude:number;country_region:string;longitude:number;latitude:number;population_50km:number;population_100km:number;population_200km:number;matched_places:string[];method:string}
+export interface Asset {id:string;earthquake_id:string;category:string;name:string;longitude:number;latitude:number;distance_km:number;is_fallback?:boolean}
+export interface Source {name:string;url:string;license:string;attribution:string;updated_at?:string}
+export interface Summary {total_earthquakes:number;active_clusters:number;estimated_exposed_population:number;exposed_critical_assets:number;highest_risk_recent_event:Earthquake|null;updated_at:string;source_status:string;sources:Source[];disclaimer:string}
+
+export interface FeatureImportance {feature:string;name:string;importance:number;interpretation:string;value?:number;contribution_score?:number}
+export interface HotspotPrediction {id:string;rank:number;likelihood_score:number;category:'Low'|'Medium'|'High';region:string;center_latitude:number;center_longitude:number;bounds:number[];geometry:GeoJSON.Polygon;recent_event_count:number;max_recent_magnitude:number;nearby_exposed_population:number;population_matched_places?:string[];nearby_critical_infrastructure:number|null;infrastructure_exposure_status?:'not_loaded'|'loading'|'loaded'|'unavailable';infrastructure_by_category?:Record<string,number>;top_contributing_features:FeatureImportance[]}
+export interface ModelMetadata {status:string;model_type?:string;training_date?:string;data_date_range?:{start:string;end:string};magnitude_threshold?:number;grid_size_degrees?:number;historical_lookback_days?:number;feature_window_days?:number;prediction_window_days?:number;accuracy?:number;precision?:number;recall?:number;f1_score?:number;roc_auc?:number|null;title:string;disclaimer:string;limitations?:string;error?:string|null}
+

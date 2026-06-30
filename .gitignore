@@ -1,0 +1,11 @@
+node_modules/
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.env
+.env.example
+data/cache/*.json
+!data/cache/.gitkeep
+
