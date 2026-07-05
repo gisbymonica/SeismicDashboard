@@ -12,7 +12,9 @@ RUN npm run build
 FROM nginx:1.27-alpine
 # Copy built assets to nginx
 COPY --from=build /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+ARG NGINX_CONFIG=nginx.render.conf
+COPY ${NGINX_CONFIG} /etc/nginx/conf.d/default.conf
 
 # Ensure nginx serves files as non-root user where possible
 RUN chown -R nginx:nginx /usr/share/nginx/html
